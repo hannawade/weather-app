@@ -1,3 +1,7 @@
+##React Weather App
+
+This react app uses your geolocation to get current weather data from https://openweathermap.org/current 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
