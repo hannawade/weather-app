@@ -8,7 +8,7 @@ import Container from "@material-ui/core/Container";
 
 //TODO: Give isFetching() warning
 //TODO: Move API url and API key to key.js
-//TODO: Wait to fetch until after exploring geolocation
+//TODO: Wait to fetch until after considering geolocation
 
 class App extends Component {
   constructor(props) {

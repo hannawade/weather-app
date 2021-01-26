@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 //TODO: Handling for different timezones for sunset/sunrise
 //TODO: Look at humidity & visibility units of measurement
+//TODO: Add icons for weather conditions
 
 //Table to display details of current weather
 class DetailsTable extends Component {

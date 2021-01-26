@@ -45,6 +45,7 @@ class Topbar extends Component {
             id="outlined-basic"
             variant="outlined"
             label="City"
+            placeholder="City name"
             onChange={this.handleLocationChange}
             startAdornment={
               <InputAdornment position="start">
