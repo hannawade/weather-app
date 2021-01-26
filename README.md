@@ -1,4 +1,4 @@
-##React Weather App
+## React Weather App
 
 This react app uses your geolocation to get current weather data from https://openweathermap.org/current 
 
