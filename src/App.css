@@ -2,47 +2,115 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Unit-selector {
+  float: right;
+  min-width: 120;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Title {
+  font-size: 2rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Title-Wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.Title-Location {
+  position: relative;
+  color: Black;
+  float: left;
+  font-size: 2rem;
+  font-family: sans-serif;
 }
 
-.Center {
-  width: 200px;
-  height: 200px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -100px;
-  margin-left: -100px;
+.Title-Time {
+  position: relative;
+  color: grey;
+  float: left;
+  font-size: 24px;
+  font-family: sans-serif;
+  clear: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Fetching-message {
+  position: relative;
+  font-size: 24px;
+  clear: both;
+}
+
+.Topbar {
+  height: 80px;
+  padding: 16px;
+}
+
+.Topbar-Search {
+  border: 1px, solid, transparent;
+  height: 24px;
+  width: 350px;
+  border-radius: 24px;
+  margin: auto;
+}
+
+.location-search-input,
+.location-search-input:focus,
+.location-search-input:active {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border: honeydew;
+  display: block;
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.suggestion-item {
+  text-align: left;
+}
+
+.suggestion-item--active {
+  text-align: left;
+}
+
+.autocomplete-dropdown-container {
+  border-bottom: honeydew;
+  border-left: honeydew;
+  border-right: honeydew;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1000;
+  border-radius: 0 0 2px 2px;
+  flex: auto;
+}
+
+.Details-Table {
+  padding: 16px;
+}
+
+.Details-Table-Element {
+  font-size: 20px;
+}
+.sup {
+  vertical-align: top;
+  position: relative;
+  top: -0.5em;
+}
+
+.Weather-Icon-Wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.Weather-Icon {
+  position: relative;
+  clear: right;
+  float: right;
+  align-self: center;
+  line-height: normal;
+  width: 3rem;
+  height: 3rem;
 }

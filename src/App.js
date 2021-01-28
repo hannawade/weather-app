@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
+import Title from "./components/Title";
 import Topbar from "./components/Topbar";
 import DetailsTable from "./components/DetailsTable";
+import WeatherIcon from "./components/WeatherIcon";
 
 //@material-ui components
 import Container from "@material-ui/core/Container";
 
-//TODO: Give isFetching() warning
-//TODO: Move API url and API key to key.js
-//TODO: Wait to fetch until after considering geolocation
+//TODO: Error handling for bad requests
+//TODO: Move API url and API key to keys.js
+//GOOGLE MAPS API KEY: AIzaSyCJE6UpDXcrIb2yv0_8879sD6Ph8xo9YlI
+//OPEN WEATHER MAP API KEY: 047556730beba8c0ca9b089eeb343887
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +20,14 @@ class App extends Component {
     this.unitsHandler = this.unitsHandler.bind(this);
   }
 
+  //Defaults to Indianapolis if geolocation is turned off
   state = {
-    isFetching: false,
+    isFetching: true,
+    error: null,
     location: "Indianapolis",
     units: "imperial",
-    geo: false,
-    lat: null,
-    lon: null,
+    lat: 39.7683,
+    lon: -86.1584,
     data: [],
   };
 
@@ -31,44 +35,41 @@ class App extends Component {
     //Get latitude and longitude of user
     if (navigator.geolocation) {
       this.getPosition().then((position) => {
-        this.setCoords(position.coords.latitude, position.coords.longitude);
+        this.locationHandler(
+          position.coords.latitude,
+          position.coords.longitude
+        );
       });
+    } else {
+      this.fetchData();
     }
-    //Call fetchData() every 1 second
-    this.fetchData();
-    this.timer = setInterval(() => this.fetchData(), 1000);
   }
 
-  //Clears timer
-  componentWillUnmount() {
-    clearInterval(this.timer);
-    this.timer = null;
+  //Calls fetchdata() when the unit or location has been updated
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.units !== this.state.units ||
+      prevState.lat !== this.state.lat ||
+      prevState.lon !== this.state.lon
+    ) {
+      this.fetchData();
+    }
   }
+
+  //
+  componentWillUnmount() {}
 
   //Get weather data from API
   fetchData() {
     this.setState({ isFetching: true });
 
-    var apiUrl = "";
-
-    //If user has geolocation enabled, call with their latitude and longitude
-    if (this.state.geo === true) {
-      apiUrl =
-        "http://api.openweathermap.org/data/2.5/weather?lat=" +
-        this.state.lat +
-        "&lon=" +
-        this.state.lon +
-        "&APPID=047556730beba8c0ca9b089eeb343887&units=" +
-        this.state.units;
-    }
-    //Call with city name if no geolocation or is manual search from Topbar
-    else {
-      apiUrl =
-        "http://api.openweathermap.org/data/2.5/weather?q=" +
-        this.state.location +
-        "&APPID=047556730beba8c0ca9b089eeb343887&units=" +
-        this.state.units;
-    }
+    var apiUrl =
+      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+      this.state.lat +
+      "&lon=" +
+      this.state.lon +
+      "&APPID=047556730beba8c0ca9b089eeb343887&units=" +
+      this.state.units;
 
     //Fetch data and update state
     fetch(apiUrl)
@@ -81,7 +82,7 @@ class App extends Component {
         });
       })
       .catch((e) => {
-        this.setState({ ...this.state, isFetching: false });
+        this.setState({ ...this.state, isFetching: false, error: e });
       });
   }
 
@@ -92,54 +93,60 @@ class App extends Component {
     });
   };
 
-  //Sets latitude and longitude from user
-  setCoords(lat, lon) {
-    this.setState({
-      geo: true,
-      lat: lat,
-      lon: lon,
-    });
-  }
-
+  //Sets latitude and longitude from user input
   //Used in Topbar.js
-  locationHandler(value) {
-    this.setState({ geo: false, location: value });
+  locationHandler(lat, lon) {
+    this.setState({ lat: lat, lon: lon });
   }
 
+  //Sets units from user input
   //Used in Topbar.js
   unitsHandler(value) {
     this.setState({ units: value });
   }
 
+  //Gives loading message while waiting for data
+  handleWait() {
+    if (this.state.isFetching)
+      return (
+        <div className="Fetching-message">Grabbing current weather data</div>
+      );
+    else {
+      return this.state.data.map((d) => (
+        <div>
+          <WeatherIcon icon={d.weather[0].icon}></WeatherIcon>
+          <DetailsTable
+            location={this.state.location}
+            units={this.state.units}
+            main={d.weather[0].main}
+            temp={d.main.temp}
+            feels_like={d.main.feels_like}
+            wind_speed={d.wind.speed}
+            temp_min={d.main.temp_min}
+            temp_max={d.main.temp_max}
+            humidity={d.main.humidity}
+            visibility={d.visibility}
+            sunrise={d.sys.sunrise}
+            sunset={d.sys.sunset}
+          ></DetailsTable>
+        </div>
+      ));
+    }
+  }
+
   render() {
-    const { data } = this.state;
-    return (
-      <div className="App">
+    return this.state.data.map((d) => (
+      <div className="App" id="App">
         <Container>
           <Topbar
-            location={this.state.location}
             unitsHandler={this.unitsHandler}
             locationHandler={this.locationHandler}
           ></Topbar>
-          {data.map((d) => (
-            <DetailsTable
-              location={this.state.location}
-              units={this.state.units}
-              main={d.weather[0].main}
-              temp={d.main.temp}
-              feels_like={d.main.feels_like}
-              wind_speed={d.wind.speed}
-              temp_min={d.main.temp_min}
-              temp_max={d.main.temp_max}
-              humidity={d.main.humidity}
-              visibility={d.visibility}
-              sunrise={d.sys.sunrise}
-              sunset={d.sys.sunset}
-            ></DetailsTable>
-          ))}
+          <Title location={this.state.location}></Title>
+          {this.handleWait()}
         </Container>
       </div>
-    );
+    ));
   }
 }
 export default App;
