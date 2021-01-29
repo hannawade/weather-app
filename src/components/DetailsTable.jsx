@@ -73,7 +73,7 @@ class DetailsTable extends Component {
             <p>Sunrise: {moment.unix(d.sys.sunrise).format("h:mm a")}</p>
           </Grid>
           <Grid item xs={6} className="Details-table-element">
-            <p>Sunset: {moment.unix(d.sys.sunset).format("hh:mm a")}</p>
+            <p>Sunset: {moment.unix(d.sys.sunset).format("h:mm a")}</p>
           </Grid>
         </Grid>
       </div>
