@@ -17,10 +17,6 @@ class Topbar extends Component {
     this.updateLocation = this.updateLocation.bind(this);
   }
 
-  state = {
-    city: "",
-  };
-
   //Handle change for meteric/imperial
   handleUnitChange = (event) => {
     this.props.unitsHandler(event.target.value);

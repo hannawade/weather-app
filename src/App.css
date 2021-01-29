@@ -106,6 +106,7 @@
 }
 
 .Weather-Icon {
+  margin-right: 10px;
   position: relative;
   clear: right;
   float: right;

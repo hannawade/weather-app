@@ -10,8 +10,6 @@ import Container from "@material-ui/core/Container";
 
 //TODO: Error handling for bad requests
 //TODO: Move API url and API key to keys.js
-//GOOGLE MAPS API KEY: AIzaSyCJE6UpDXcrIb2yv0_8879sD6Ph8xo9YlI
-//OPEN WEATHER MAP API KEY: 047556730beba8c0ca9b089eeb343887
 
 class App extends Component {
   constructor(props) {
@@ -61,6 +59,8 @@ class App extends Component {
 
   //Get weather data from API
   fetchData() {
+    const OPEN_WEATHER_MAP_Key = "047556730beba8c0ca9b089eeb343887";
+
     this.setState({ isFetching: true });
 
     var apiUrl =
@@ -68,7 +68,9 @@ class App extends Component {
       this.state.lat +
       "&lon=" +
       this.state.lon +
-      "&APPID=047556730beba8c0ca9b089eeb343887&units=" +
+      "&APPID=" +
+      OPEN_WEATHER_MAP_Key +
+      "&units=" +
       this.state.units;
 
     //Fetch data and update state
@@ -96,13 +98,13 @@ class App extends Component {
   //Sets latitude and longitude from user input
   //Used in Topbar.js
   locationHandler(lat, lon) {
-    this.setState({ lat: lat, lon: lon });
+    this.setState({ lat, lon });
   }
 
   //Sets units from user input
   //Used in Topbar.js
-  unitsHandler(value) {
-    this.setState({ units: value });
+  unitsHandler(units) {
+    this.setState({ units });
   }
 
   //Gives loading message while waiting for data
@@ -116,18 +118,8 @@ class App extends Component {
         <div>
           <WeatherIcon icon={d.weather[0].icon}></WeatherIcon>
           <DetailsTable
-            location={this.state.location}
+            data={this.state.data}
             units={this.state.units}
-            main={d.weather[0].main}
-            temp={d.main.temp}
-            feels_like={d.main.feels_like}
-            wind_speed={d.wind.speed}
-            temp_min={d.main.temp_min}
-            temp_max={d.main.temp_max}
-            humidity={d.main.humidity}
-            visibility={d.visibility}
-            sunrise={d.sys.sunrise}
-            sunset={d.sys.sunset}
           ></DetailsTable>
         </div>
       ));
@@ -135,7 +127,7 @@ class App extends Component {
   }
 
   render() {
-    return this.state.data.map((d) => (
+    return (
       <div className="App" id="App">
         <Container>
           <Topbar
@@ -146,7 +138,7 @@ class App extends Component {
           {this.handleWait()}
         </Container>
       </div>
-    ));
+    );
   }
 }
 export default App;
