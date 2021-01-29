@@ -6,12 +6,12 @@ import PlacesAutocomplete, {
 
 //@material-ui icons
 import SearchIcon from "@material-ui/icons/Search";
+import LocationOnSharpIcon from "@material-ui/icons/LocationOnSharp";
 
 //@material-ui components
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
-
-//TODO: Add styling to searchbar and dropdown
+import ListItem from "@material-ui/core/ListItem";
 
 class LocationAutocomplete extends Component {
   constructor(props) {
@@ -38,6 +38,15 @@ class LocationAutocomplete extends Component {
     this.props.updateLocation(lat, lon);
   }
 
+  setActive(suggestion) {
+    let backgroundColor = "ffffff";
+    suggestion.active
+      ? (backgroundColor = "#fafafa")
+      : (backgroundColor = "#ffffff");
+
+    return backgroundColor;
+  }
+
   render() {
     return (
       <div id="Location-Autocomplete">
@@ -54,6 +63,7 @@ class LocationAutocomplete extends Component {
           }) => (
             <div className="Topbar-Search">
               <Input
+                disableUnderline="true"
                 {...getInputProps({
                   placeholder: "Search location...",
                   className: "location-search-input",
@@ -67,21 +77,25 @@ class LocationAutocomplete extends Component {
               <div className="autocomplete-dropdown-container">
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
-                  const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
                   return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
+                    <div {...getSuggestionItemProps(suggestion)}>
+                      <span>
+                        <ListItem
+                          button
+                          style={
+                            suggestion.active
+                              ? {
+                                  backgroundColor: "#fafafa",
+                                }
+                              : {
+                                  backgroundColor: "#ffffff",
+                                }
+                          }
+                        >
+                          <LocationOnSharpIcon color="action" />
+                          {suggestion.description}
+                        </ListItem>
+                      </span>
                     </div>
                   );
                 })}
