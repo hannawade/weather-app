@@ -3,7 +3,6 @@ import "./App.css";
 import Title from "./components/Title";
 import Topbar from "./components/Topbar";
 import DetailsTable from "./components/DetailsTable";
-import WeatherIcon from "./components/WeatherIcon";
 
 //@material-ui components
 import Container from "@material-ui/core/Container";
@@ -63,7 +62,7 @@ class App extends Component {
 
     this.setState({ isFetching: true });
 
-    var apiUrl =
+    let apiUrl =
       "http://api.openweathermap.org/data/2.5/weather?lat=" +
       this.state.lat +
       "&lon=" +

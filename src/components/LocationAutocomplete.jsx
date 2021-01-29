@@ -56,7 +56,7 @@ class LocationAutocomplete extends Component {
           }) => (
             <div className="Topbar-search">
               <Input
-                disableUnderline="true"
+                disableUnderline={true}
                 {...getInputProps({
                   placeholder: "Search location...",
                   className: "Location-search-input",
