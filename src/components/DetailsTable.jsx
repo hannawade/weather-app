@@ -36,43 +36,43 @@ class DetailsTable extends Component {
 
   render() {
     return this.props.data.map((d) => (
-      <div className="Details-Table" id="Details-Table">
+      <div className="Details-table" id="Details-table">
         <Grid container>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>Description: {d.weather[0].main}</p>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>
               Temperature: {d.main.temp} <sup>{this.formatTempUnit()}</sup>
             </p>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             Feels Like: {d.main.feels_like} <sup>{this.formatTempUnit()}</sup>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             Wind: {d.wind.speed} <sup>{this.formatWindSpeedUnit()}</sup>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>
               Low: {d.main.temp_min} <sup>{this.formatTempUnit()}</sup>
             </p>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>
               High: {d.main.temp_max} <sup>{this.formatTempUnit()}</sup>
             </p>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             Humidity: {d.main.humidity} %
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             Visibility: {this.formatVisibility(d.visibility)}{" "}
             {this.formatVisibilityUnit()}
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>Sunrise: {moment.unix(d.sys.sunrise).format("h:mm a")}</p>
           </Grid>
-          <Grid item xs={6} className="Details-Table-Element">
+          <Grid item xs={6} className="Details-table-element">
             <p>Sunset: {moment.unix(d.sys.sunset).format("hh:mm a")}</p>
           </Grid>
         </Grid>

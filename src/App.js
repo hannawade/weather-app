@@ -116,7 +116,6 @@ class App extends Component {
     else {
       return this.state.data.map((d) => (
         <div>
-          <WeatherIcon icon={d.weather[0].icon}></WeatherIcon>
           <DetailsTable
             data={this.state.data}
             units={this.state.units}
@@ -134,7 +133,7 @@ class App extends Component {
             unitsHandler={this.unitsHandler}
             locationHandler={this.locationHandler}
           ></Topbar>
-          <Title location={this.state.location}></Title>
+          <Title location={this.state.location} data={this.state.data}></Title>
           {this.handleWait()}
         </Container>
       </div>

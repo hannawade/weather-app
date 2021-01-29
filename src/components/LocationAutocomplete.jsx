@@ -13,6 +13,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import ListItem from "@material-ui/core/ListItem";
 
+//TODO: Move styling to css
+
 class LocationAutocomplete extends Component {
   constructor(props) {
     super(props);
@@ -38,18 +40,9 @@ class LocationAutocomplete extends Component {
     this.props.updateLocation(lat, lon);
   }
 
-  setActive(suggestion) {
-    let backgroundColor = "ffffff";
-    suggestion.active
-      ? (backgroundColor = "#fafafa")
-      : (backgroundColor = "#ffffff");
-
-    return backgroundColor;
-  }
-
   render() {
     return (
-      <div id="Location-Autocomplete">
+      <div id="Location-autocomplete">
         <PlacesAutocomplete
           value={this.state.location}
           onChange={this.handleChange}
@@ -61,12 +54,12 @@ class LocationAutocomplete extends Component {
             getSuggestionItemProps,
             loading,
           }) => (
-            <div className="Topbar-Search">
+            <div className="Topbar-search">
               <Input
                 disableUnderline="true"
                 {...getInputProps({
                   placeholder: "Search location...",
-                  className: "location-search-input",
+                  className: "Location-search-input",
                 })}
                 startAdornment={
                   <InputAdornment position="start">
@@ -74,7 +67,7 @@ class LocationAutocomplete extends Component {
                   </InputAdornment>
                 }
               />
-              <div className="autocomplete-dropdown-container">
+              <div className="Autocomplete-dropdown-container">
                 {loading && <div>Loading...</div>}
                 {suggestions.map((suggestion) => {
                   return (

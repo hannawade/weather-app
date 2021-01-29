@@ -9,10 +9,8 @@ class WeatherIcon extends Component {
 
   render() {
     return (
-      <div className="Weather-Icon-Wrapper">
-        <div className="Weather-Icon" id="Weather-Icon">
-          <img src={this.getIconPath()} alt="weather icon"></img>
-        </div>
+      <div className="Weather-icon" id="Weather-icon">
+        <img src={this.getIconPath()} alt="weather icon"></img>
       </div>
     );
   }
