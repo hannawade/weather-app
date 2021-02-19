@@ -25,40 +25,40 @@ const DetailsTable = (props) => {
   return props.data.map((d) => (
     <div className="Details-table" id="Details-table">
       <Grid container>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>Description: {d.weather[0].main}</p>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>
             Temperature: {d.main.temp} <sup>{formatTempUnit}</sup>
           </p>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           Feels Like: {d.main.feels_like} <sup>{formatTempUnit}</sup>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           Wind: {d.wind.speed} <sup>{formatWindSpeedUnit}</sup>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>
             Low: {d.main.temp_min} <sup>{formatTempUnit}</sup>
           </p>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>
             High: {d.main.temp_max} <sup>{formatTempUnit}</sup>
           </p>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           Humidity: {d.main.humidity} %
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           Visibility: {formatVisibility(d.visibility)} {formatVisibilityUnit}
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>Sunrise: {moment.unix(d.sys.sunrise).format("h:mm a")}</p>
         </Grid>
-        <Grid item xs={6} className="Details-table-element">
+        <Grid item xs={6}>
           <p>Sunset: {moment.unix(d.sys.sunset).format("h:mm a")}</p>
         </Grid>
       </Grid>

@@ -12,6 +12,7 @@ import LocationOnSharpIcon from "@material-ui/icons/LocationOnSharp";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Input from "@material-ui/core/Input";
 import ListItem from "@material-ui/core/ListItem";
+import { InputBase } from "@material-ui/core";
 
 //TODO: Move styling to css
 
@@ -43,41 +44,38 @@ const LocationAutocomplete = (props) => {
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="Topbar-search">
-            <Input
+          <div>
+            <InputBase
               disableUnderline={true}
-              {...getInputProps({
-                placeholder: "Search location...",
-                className: "Location-search-input",
-              })}
+              placeholder="Search location..."
+              className="Location-search-input"
               startAdornment={
-                <InputAdornment position="start">
+                <InputAdornment>
                   <SearchIcon />
                 </InputAdornment>
               }
+              {...getInputProps()}
             />
-            <div className="Autocomplete-dropdown-container">
+            <div className="Location-dropdown-container">
               {loading && <div>Loading...</div>}
               {suggestions.map((suggestion) => {
                 return (
                   <div {...getSuggestionItemProps(suggestion)}>
-                    <span>
-                      <ListItem
-                        button
-                        style={
-                          suggestion.active
-                            ? {
-                                backgroundColor: "#fafafa",
-                              }
-                            : {
-                                backgroundColor: "#ffffff",
-                              }
-                        }
-                      >
-                        <LocationOnSharpIcon color="action" />
-                        {suggestion.description}
-                      </ListItem>
-                    </span>
+                    <ListItem
+                      button
+                      style={
+                        suggestion.active
+                          ? {
+                              backgroundColor: "#fafafa",
+                            }
+                          : {
+                              backgroundColor: "#ffffff",
+                            }
+                      }
+                    >
+                      <LocationOnSharpIcon color="action" />
+                      {suggestion.description}
+                    </ListItem>
                   </div>
                 );
               })}

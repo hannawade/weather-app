@@ -1,8 +1,15 @@
-.App {
-  text-align: center;
+.Details-table {
+  font-size: 20px;
 }
 
-.Autocomplete-dropdown-container {
+.Fetching-message {
+  text-align: center;
+  position: relative;
+  font-size: 24px;
+  clear: both;
+}
+
+.Location-dropdown-container {
   border-bottom: honeydew;
   border-left: honeydew;
   border-right: honeydew;
@@ -14,52 +21,20 @@
   flex: auto;
 }
 
-.Details-table {
-  padding: 16px;
-}
-
-.Details-table-element {
-  font-size: 20px;
-}
-
-.Unit-selector {
-  float: right;
-  min-width: 120;
-}
-
-.Fetching-message {
-  position: relative;
-  font-size: 24px;
-  clear: both;
-}
-
-.Location-search-input,
-.Location-search-input:focus,
-.Location-search-input:active {
+.Location-search-input {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   border: honeydew;
   display: block;
-  width: 100%;
   padding: 16px;
   font-size: 16px;
-  border-radius: 50px;
-  outline: none;
+  border-radius: 4px;
+  width: 100%;
 }
 
 .sup {
   vertical-align: top;
   position: relative;
   top: -0.5em;
-}
-
-.Title {
-  font-size: 2rem;
-}
-
-.Title-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 .Title-location {
@@ -84,25 +59,6 @@
   padding: 16px;
 }
 
-.Topbar-search {
-  border: 1px, solid, transparent;
-  height: 24px;
-  width: 350px;
-  border-radius: 24px;
-  margin: auto;
-}
-
-.Weather-Icon-Wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
 .Weather-icon {
-  margin-right: 5rem;
-  position: relative;
-  float: right;
-  line-height: normal;
-  width: 3rem;
-  height: 3rem;
+  margin-right: 2rem;
 }

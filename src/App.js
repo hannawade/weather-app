@@ -126,8 +126,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" id="App">
-        <Container>
+      <div id="App">
+        <Container maxWidth="md">
           <Topbar
             unitsHandler={this.unitsHandler}
             locationHandler={this.locationHandler}
