@@ -40,7 +40,6 @@
 .Title-location {
   position: relative;
   color: Black;
-  float: left;
   font-size: 2rem;
   font-family: sans-serif;
 }
@@ -48,7 +47,6 @@
 .Title-time {
   position: relative;
   color: grey;
-  float: left;
   font-size: 24px;
   font-family: sans-serif;
   clear: left;
